@@ -3,9 +3,14 @@ import { User } from '../types'
 interface Props {
   users: User[]
   showTableColors: boolean
+  deleteUser: (user: User) => void
 }
 
-export const UsersList: React.FC<Props> = ({ users, showTableColors }) => {
+export const UsersList: React.FC<Props> = ({
+  users,
+  showTableColors,
+  deleteUser
+}) => {
   return (
     <div className='columns is-centered'>
       <div className='column is-four-fifths'>
@@ -40,7 +45,12 @@ export const UsersList: React.FC<Props> = ({ users, showTableColors }) => {
                   <td>{user.name.last} </td>
                   <td>{user.location.country} </td>
                   <td>
-                    <button className='button is-small is-danger'>❌</button>
+                    <button
+                      onClick={() => deleteUser(user)}
+                      className='button is-small is-danger'
+                    >
+                      ❌
+                    </button>
                   </td>
                 </tr>
               )
